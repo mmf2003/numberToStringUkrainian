@@ -1,4 +1,4 @@
-import {units, dozens, hundreds, thousands,tenThousands, hundredsThousands} from "./objects.js";
+import {units, dozens, hundreds, thousands,tenThousands, hundredsThousands, millions} from "./objects.js";
 
 function amountInCuirsive(num) {
     let res = '';
@@ -7,10 +7,10 @@ function amountInCuirsive(num) {
     for (let i = 0; i < grn.length; i++) {
         switch (i) {
             case 0:
-                if (grn[0] == 0) break;
                 if (grn[1] == '1') {
                     res = dozensOrThousandsIsOne(grn[0]);
                 }
+                if (grn[0] == 0) break;
                 else res = units[grn[i]] + ' ';
                 break;
 
@@ -26,10 +26,10 @@ function amountInCuirsive(num) {
                 break;
 
             case 3:
-                if (grn[3] == 0) break;
                 if (grn[4] == '1') {
                     res = dozensOrThousandsIsOne(grn[3])+ 'тисяч ' + res;
                 }
+                if (grn[3] == 0) break;
                 else res = thousands[grn[i]] + ' ' + res;
                 break;
 
@@ -45,7 +45,15 @@ function amountInCuirsive(num) {
                 if (grn[4] == 0) res = hundredsThousands[grn[i]] + ' тисяч ' + res; 
                 else res = hundredsThousands[grn[i]] + ' ' + res;
                 break;
-        
+            
+            case 6:
+                if (grn[7] == '1') {
+                    res = dozensOrThousandsIsOne(grn[6]) + 'мільйонів ' + res;
+                }
+                if (grn[6] == 0) break;
+                else res = millions[grn[i]] + ' ' + res;
+                break;
+            
             default:
                 break;
         }
@@ -57,12 +65,15 @@ function amountInCuirsive(num) {
     console.log(res);
 }
 
-amountInCuirsive('1.45')
-amountInCuirsive('01.45')
-amountInCuirsive('001.00')
-amountInCuirsive('4.45')
-amountInCuirsive('40000.45')
-amountInCuirsive('400000.45')
+
+amountInCuirsive('1.00')
+amountInCuirsive('10.00')
+amountInCuirsive('100.00')
+amountInCuirsive('1000.00')
+amountInCuirsive('10000.00')
+amountInCuirsive('100000.00')
+amountInCuirsive('1000000.00')
+amountInCuirsive('10000000.00')
 
 function dozensOrThousandsIsOne(grn) {
     switch (grn) {
