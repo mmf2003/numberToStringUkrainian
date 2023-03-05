@@ -58,9 +58,21 @@ let tenThousands = {
     9: 'девʼяносто',
 }
 
+let hundredsThousands = {
+    1: 'сто',
+    2: 'двісті',
+    3: 'триста',
+    4: 'чотириста',
+    5: 'пʼятсот',
+    6: 'шістсот',
+    7: 'сімсот',
+    8: 'вісісот',
+    9: 'девʼятсот',
+}
+
 function amountInCuirsive(num) {
     let res = '';
-    let pennies = 'грн ' + num.split('.')[1]+' коп.';
+    let pennies = 'грн. ' + num.split('.')[1]+' коп.';
     let grn = num.split('.')[0].split('').reverse();
     for (let i = 0; i < grn.length; i++) {
         switch (i) {
@@ -94,7 +106,14 @@ function amountInCuirsive(num) {
             case 4:
                 if (grn[4] == 0) break;
                 if (grn[4] == 1) break;
+                if (grn[3] == 0) res = tenThousands[grn[i]]+ ' тисяч ' + res 
                 else res = tenThousands[grn[i]]+ ' ' + res;
+                break;
+            
+            case 5:
+                if (grn[5] == 0) break;
+                if (grn[4] == 0) res = hundredsThousands[grn[i]] + ' тисяч ' + res; 
+                else res = hundredsThousands[grn[i]] + ' ' + res;
                 break;
         
             default:
@@ -108,10 +127,12 @@ function amountInCuirsive(num) {
     console.log(res);
 }
 
-amountInCuirsive('15123.45')
-amountInCuirsive('24003.45')
-amountInCuirsive('33999.00')
-amountInCuirsive('42111.45')
+amountInCuirsive('1.45')
+amountInCuirsive('01.45')
+amountInCuirsive('001.00')
+amountInCuirsive('4.45')
+amountInCuirsive('40000.45')
+amountInCuirsive('400000.45')
 
 function dozensOrThousandsIsOne(grn) {
     switch (grn) {
