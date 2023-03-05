@@ -34,6 +34,30 @@ let hundreds = {
     9: 'девʼятсот',
 }
 
+let thousands = {
+    1: units[1] + ' тисяча',
+    2: units[2] + ' тисячі',
+    3: units[3] + ' тисячі',
+    4: units[4] + ' тисячі',
+    5: units[5] + ' тисяч',
+    6: units[6] + ' тисяч',
+    7: units[7] + ' тисяч',
+    8: units[8] + ' тисяч',
+    9: units[9] + ' тисяч',
+}
+
+let tenThousands = {
+    1: 'x',
+    2: 'двадцять',
+    3: 'тридцять',
+    4: 'сорок',
+    5: 'пʼятдусят',
+    6: 'шістдесят',
+    7: 'сімдесят',
+    8: 'вісімдусят',
+    9: 'девʼяносто',
+}
+
 function amountInCuirsive(num) {
     let res = '';
     let pennies = 'грн ' + num.split('.')[1]+' коп.';
@@ -43,7 +67,7 @@ function amountInCuirsive(num) {
             case 0:
                 if (grn[0] == 0) break;
                 if (grn[1] == '1') {
-                    res = dozensIsOne(grn[0]);
+                    res = dozensOrThousandsIsOne(grn[0]);
                 }
                 else res = units[grn[i]] + ' ';
                 break;
@@ -58,6 +82,20 @@ function amountInCuirsive(num) {
                 if (grn[2] == 0) break;
                 res = hundreds[grn[i]] + ' ' + res;
                 break;
+
+            case 3:
+                if (grn[3] == 0) break;
+                if (grn[4] == '1') {
+                    res = dozensOrThousandsIsOne(grn[3])+ 'тисяч ' + res;
+                }
+                else res = thousands[grn[i]] + ' ' + res;
+                break;
+
+            case 4:
+                if (grn[4] == 0) break;
+                if (grn[4] == 1) break;
+                else res = tenThousands[grn[i]]+ ' ' + res;
+                break;
         
             default:
                 break;
@@ -70,12 +108,12 @@ function amountInCuirsive(num) {
     console.log(res);
 }
 
-amountInCuirsive('123.45')
-amountInCuirsive('003.45')
-amountInCuirsive('999.00')
-amountInCuirsive('905.45')
+amountInCuirsive('15123.45')
+amountInCuirsive('24003.45')
+amountInCuirsive('33999.00')
+amountInCuirsive('42111.45')
 
-function dozensIsOne(grn) {
+function dozensOrThousandsIsOne(grn) {
     switch (grn) {
         case '0':
             return 'десять ';
