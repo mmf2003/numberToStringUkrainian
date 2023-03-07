@@ -1,4 +1,4 @@
-import {units, dozens, hundreds, thousands,tenThousands, hundredsThousands, millions} from "./objects.js";
+import { units, dozens, hundreds, thousands,tenThousands, hundredsThousands, millions } from "./objects.js";
 
 function amountInCuirsive(num) {
     
@@ -11,6 +11,7 @@ function amountInCuirsive(num) {
         pennies = 'грн. ' + num.split('.')[1] + ' коп.';
     }
     let grn = num.split('.')[0].split('').reverse();
+    
     for (let i = 0; i < grn.length; i++) {
         switch (i) {
             case 0:
@@ -103,8 +104,8 @@ function dozensOrThousandsIsOne(grn) {
             break;
     }
 }
-console.log(amountInCuirsive('100'));
-console.log(amountInCuirsive('1000'));
-console.log(amountInCuirsive('1000000'));
+let a = prompt('Enter the number', '100.00');
+alert(amountInCuirsive(a));
+
 
 
