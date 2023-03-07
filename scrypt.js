@@ -1,9 +1,10 @@
 import {units, dozens, hundreds, thousands,tenThousands, hundredsThousands, millions} from "./objects.js";
 
 function amountInCuirsive(num) {
+    
     let res = '';
     let pennies ='';
-    if (num.split('.')[1] == undefined ||num.split('.')[1] == '') {
+    if (num.split('.')[1] == undefined || num.split('.')[1] == '') {
         pennies = 'грн. ' + '00' + ' коп.';
     }
     else {
@@ -15,11 +16,13 @@ function amountInCuirsive(num) {
             case 0:
                 if (grn[1] == '1') {
                     res = dozensOrThousandsIsOne(grn[0]);
+                    if (grn[0] == 0) break;
                 }
-                if (grn[0] == 0) break;
-                else res = units[grn[i]] + ' ';
+                else {
+                    if (grn[0] == 0) break;
+                    res = units[grn[i]] + ' ';
+                }
                 break;
-
             case 1:
                 if (grn[1] == 0) break;
                 if (grn[1] == 1) break;
@@ -34,9 +37,13 @@ function amountInCuirsive(num) {
             case 3:
                 if (grn[4] == '1') {
                     res = dozensOrThousandsIsOne(grn[3])+ 'тисяч ' + res;
+                    if (grn[3] == 0) break;
                 }
-                if (grn[3] == 0) break;
-                else res = thousands[grn[i]] + ' ' + res;
+                
+                else {
+                    if (grn[3] == 0) break;
+                    res = thousands[grn[i]] + ' ' + res;
+                }
                 break;
 
             case 4:
@@ -55,15 +62,17 @@ function amountInCuirsive(num) {
             case 6:
                 if (grn[7] == '1') {
                     res = dozensOrThousandsIsOne(grn[6]) + 'мільйонів ' + res;
+                    if (grn[6] == 0) break;
                 }
-                if (grn[6] == 0) break;
-                else res = millions[grn[i]] + ' ' + res;
+                else {
+                    if (grn[6] == 0) break;
+                    res = millions[grn[i]] + ' ' + res;
+                }
                 break;
             
             default:
                 break;
         }
-        
     }
     return res + pennies;
 }
@@ -94,8 +103,8 @@ function dozensOrThousandsIsOne(grn) {
             break;
     }
 }
-
+console.log(amountInCuirsive('100'));
+console.log(amountInCuirsive('1000'));
 console.log(amountInCuirsive('1000000'));
-console.log(amountInCuirsive('1000000.'));
 
 
