@@ -119,6 +119,19 @@ function dozensOrThousandsIsOne(grn) {
     }
 }
 let a = prompt('Enter the number', '100.00');
+let check = true;
+while (check) {
+    let str = ['1','2','3','4','5','6','7','8','9','.',',','0'];
+    let arr = a.split('');
+    for (let i = 0; i < arr.length; i++) {
+        if (!str.includes(a[i])) {
+            a = prompt('Bad number, enter another!');
+            check = true;
+        }
+        else check = false;
+    }
+   
+}
 alert(amountInCuirsive(a));
 
 
