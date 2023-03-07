@@ -4,13 +4,27 @@ function amountInCuirsive(num) {
     
     let res = '';
     let pennies ='';
-    if (num.split('.')[1] == undefined || num.split('.')[1] == '') {
-        pennies = 'грн. ' + '00' + ' коп.';
+    let grn;
+
+    if (num.split('').includes('.')) {
+        if (num.split('.')[1] == undefined || num.split('.')[1] == '') {
+            pennies = 'грн. ' + '00' + ' коп.';
+        }
+        else {
+            pennies = 'грн. ' + num.split('.')[1] + ' коп.';
+        }
+        grn = num.split('.')[0].split('').reverse();
     }
-    else {
-        pennies = 'грн. ' + num.split('.')[1] + ' коп.';
+
+    if (num.split('').includes(',')) {
+        if (num.split(',')[1] == undefined || num.split(',')[1] == '') {
+            pennies = 'грн. ' + '00' + ' коп.';
+        }
+        else {
+            pennies = 'грн. ' + num.split(',')[1] + ' коп.';
+        }
+        grn = num.split(',')[0].split('').reverse();
     }
-    let grn = num.split('.')[0].split('').reverse();
     
     for (let i = 0; i < grn.length; i++) {
         switch (i) {
@@ -106,6 +120,7 @@ function dozensOrThousandsIsOne(grn) {
 }
 let a = prompt('Enter the number', '100.00');
 alert(amountInCuirsive(a));
+
 
 
 
