@@ -2,7 +2,13 @@ import {units, dozens, hundreds, thousands,tenThousands, hundredsThousands, mill
 
 function amountInCuirsive(num) {
     let res = '';
-    let pennies = 'грн. ' + num.split('.')[1]+' коп.';
+    let pennies ='';
+    if (num.split('.')[1] == undefined ||num.split('.')[1] == '') {
+        pennies = 'грн. ' + '00' + ' коп.';
+    }
+    else {
+        pennies = 'грн. ' + num.split('.')[1] + ' коп.';
+    }
     let grn = num.split('.')[0].split('').reverse();
     for (let i = 0; i < grn.length; i++) {
         switch (i) {
@@ -59,21 +65,8 @@ function amountInCuirsive(num) {
         }
         
     }
-    res = res + pennies;
-
-
-    console.log(res);
+    return res + pennies;
 }
-
-
-amountInCuirsive('1.00')
-amountInCuirsive('10.00')
-amountInCuirsive('100.00')
-amountInCuirsive('1000.00')
-amountInCuirsive('10000.00')
-amountInCuirsive('100000.00')
-amountInCuirsive('1000000.00')
-amountInCuirsive('10000000.00')
 
 function dozensOrThousandsIsOne(grn) {
     switch (grn) {
@@ -101,5 +94,8 @@ function dozensOrThousandsIsOne(grn) {
             break;
     }
 }
+
+console.log(amountInCuirsive('1000000'));
+console.log(amountInCuirsive('1000000.'));
 
 
