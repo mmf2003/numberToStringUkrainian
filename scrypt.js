@@ -6,6 +6,11 @@ function amountInCuirsive(num) {
     let pennies ='';
     let grn;
 
+    if (!num.split('').includes('.') && !num.split('').includes(',')) {
+        grn = num.split('').reverse();
+        pennies = 'грн. ' + '00' + ' коп.';
+    }
+
     if (num.split('').includes('.')) {
         if (num.split('.')[1] == undefined || num.split('.')[1] == '') {
             pennies = 'грн. ' + '00' + ' коп.';
@@ -130,7 +135,6 @@ while (check) {
         }
         else check = false;
     }
-   
 }
 alert(amountInCuirsive(a));
 
