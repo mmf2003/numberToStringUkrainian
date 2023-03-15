@@ -1,5 +1,27 @@
 import { units, dozens, hundreds, thousands,tenThousands, hundredsThousands, millions } from "./objects.js";
 
+let number = document.getElementById('number');
+let numberSet = document.getElementById('numberSet');
+let output = document.getElementById('output');
+
+numberSet.onclick = () => {
+    let num = number.value; 
+    let str = ['1','2','3','4','5','6','7','8','9','.',',','0'];
+    let arr = num.split('');
+    let check = 0;
+    for (let i = 0; i < arr.length; i++) {
+        if (!str.includes(num[i])) {
+            check++;
+        }
+    }
+    if (check == 0) {
+        let num2 = amountInCuirsive(num);
+        output.innerText = `${num2}`;
+    }
+    else output.innerText = 'Bad input, please enter valid number!';
+
+}
+
 function amountInCuirsive(num) {
     
     let res = '';
@@ -123,7 +145,7 @@ function dozensOrThousandsIsOne(grn) {
             break;
     }
 }
-let a = prompt('Enter the number', '100.00');
+/* let a = prompt('Enter the number', '100.00');
 let check = true;
 while (check) {
     let str = ['1','2','3','4','5','6','7','8','9','.',',','0'];
@@ -136,7 +158,7 @@ while (check) {
         else check = false;
     }
 }
-alert(amountInCuirsive(a));
+alert(amountInCuirsive(a)); */
 
 
 
