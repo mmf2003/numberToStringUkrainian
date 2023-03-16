@@ -4,6 +4,16 @@ let number = document.getElementById('number');
 let numberSet = document.getElementById('numberSet');
 let output = document.getElementById('output');
 
+setInterval(() => {
+    let date = new Date();
+    let watch = document.getElementById('watch');
+    watch.innerHTML = date.toLocaleTimeString();   
+}, 1000);
+
+let date = new Date();
+let watch = document.getElementById('watch');
+watch.innerHTML = date.toLocaleTimeString();
+
 numberSet.onclick = () => {
     let num = number.value; 
     let str = ['1','2','3','4','5','6','7','8','9','.',',','0'];

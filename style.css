@@ -43,3 +43,16 @@ body {
     margin: 50px auto;
     text-align: center;
 }
+
+#watch {
+    position: absolute;
+    right: 50px;
+    background: radial-gradient(circle at -8.9% 51.2%, rgb(255, 124, 0) 0%, rgb(255, 124, 0) 15.9%, rgb(255, 163, 77) 15.9%, rgb(255, 163, 77) 24.4%, rgb(19, 30, 37) 24.5%, rgb(19, 30, 37) 66%);
+    bottom: 50px;
+    color: wheat;
+    padding: 30px;
+    text-align: right;
+    font-size: 100px;
+    border-radius: 20px;
+    width: 550px;
+}
